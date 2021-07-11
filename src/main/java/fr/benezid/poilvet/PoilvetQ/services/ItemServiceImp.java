@@ -1,7 +1,11 @@
-package fr.benezid.poilvet.PoilvetQ.services;
+ package fr.benezid.poilvet.PoilvetQ.services;
 
+import java.io.*;
+import java.util.Base64;
 import java.util.List;
 
+import fr.benezid.poilvet.PoilvetQ.bo.WebFile;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +19,27 @@ ItemDao itemDao;
 	
 	@Override
 	public Item save(Item object) {
-		// TODO Auto-generated method stub
-		return itemDao.save(object);
+		System.out.println("XXX");
+				String path= object.getTitle()+"/imgs/";
+				new File(path).mkdirs();
+		for (WebFile webFile : object.getWebFileList()) {
+			String extension = webFile.getType().split("/")[1];
+			String fileBase64 = webFile.getFileBase64();
+			fileBase64=fileBase64.substring(fileBase64.lastIndexOf(',')+1).split("=")[0];
+			byte[] data = Base64.getDecoder().decode(fileBase64);
+			//System.out.println(data);
+			try{
+				OutputStream out = new FileOutputStream("docs/"+webFile.getName()+"."+extension,false);
+				out.write(data);
+				out.flush();
+				out.close();
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+
+return null;
+		//return itemDao.save(object);
 	}
 
 	@Override

@@ -2,8 +2,8 @@ package fr.benezid.poilvet.PoilvetQ.dao;
 
 import org.springframework.data.repository.CrudRepository;
 
-import fr.benezid.poilvet.PoilvetQ.bo.File;
+import fr.benezid.poilvet.PoilvetQ.bo.WebFile;
 
-public interface FileDao extends CrudRepository<File, Integer> {
+public interface FileDao extends CrudRepository<WebFile, Integer> {
 
 }

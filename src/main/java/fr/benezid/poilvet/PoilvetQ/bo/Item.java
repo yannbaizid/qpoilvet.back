@@ -26,12 +26,11 @@ public class Item {
 	private String description;
 
 	@OneToMany
-	private List<File> fileList;
+	private List<WebFile> webFileList;
 	
 	private Year year;
-	
+
 	@ManyToMany
-	private List<Category> categorieList;
-	
+	private List<Category> categoryList;
 
 }
