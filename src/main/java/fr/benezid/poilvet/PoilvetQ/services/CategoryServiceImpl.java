@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.benezid.poilvet.PoilvetQ.bo.Category;
+import fr.benezid.poilvet.PoilvetQ.bo.generic.Category;
 import fr.benezid.poilvet.PoilvetQ.dao.CategoryDao;
 
 @Service

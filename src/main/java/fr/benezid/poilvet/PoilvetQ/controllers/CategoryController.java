@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.benezid.poilvet.PoilvetQ.bo.Category;
+import fr.benezid.poilvet.PoilvetQ.bo.generic.Category;
 import fr.benezid.poilvet.PoilvetQ.services.CategoryService;
 
 

@@ -1,4 +1,4 @@
-package fr.benezid.poilvet.PoilvetQ.bo;
+package fr.benezid.poilvet.PoilvetQ.bo.generic;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

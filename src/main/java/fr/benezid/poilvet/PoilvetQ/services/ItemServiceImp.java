@@ -4,12 +4,11 @@ import java.io.*;
 import java.util.Base64;
 import java.util.List;
 
-import fr.benezid.poilvet.PoilvetQ.bo.WebFile;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
+import fr.benezid.poilvet.PoilvetQ.bo.generic.WebFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.benezid.poilvet.PoilvetQ.bo.Item;
+import fr.benezid.poilvet.PoilvetQ.bo.generic.Item;
 import fr.benezid.poilvet.PoilvetQ.dao.ItemDao;
 
 @Service
@@ -20,7 +19,7 @@ ItemDao itemDao;
 	@Override
 	public Item save(Item object) {
 		System.out.println("XXX");
-				String path= object.getTitle()+"/imgs/";
+				String path= object.getTitle()+"/";
 				new File(path).mkdirs();
 		for (WebFile webFile : object.getWebFileList()) {
 			String extension = webFile.getType().split("/")[1];
@@ -29,10 +28,13 @@ ItemDao itemDao;
 			byte[] data = Base64.getDecoder().decode(fileBase64);
 			//System.out.println(data);
 			try{
-				OutputStream out = new FileOutputStream("docs/"+webFile.getName()+"."+extension,false);
+				String src= path +webFile.getName()+"."+extension;
+				OutputStream out = new FileOutputStream(src,false);
 				out.write(data);
 				out.flush();
 				out.close();
+				webFile.setSrc(src);
+
 			} catch (Exception e){
 				e.printStackTrace();
 			}
